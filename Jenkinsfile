@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    tools {
+            gradle 'gradle5.2'
+                 
+      }
     stages {
         stage('Build') {
             steps {
