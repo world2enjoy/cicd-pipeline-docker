@@ -1,9 +1,6 @@
 pipeline {
     agent any
-    tools {
-            gradle 'gradle5.2'
-                 
-      }
+    
     stages {
         stage('Build') {
             steps {
@@ -14,10 +11,7 @@ pipeline {
         }
         
         stage('Build Docker image'){
-            when {
-                branch 'master'
-            }
-            
+                       
             steps {
                 script {
                     app = docker.build("world2enjoy/node-app")
@@ -30,9 +24,7 @@ pipeline {
         }
         
         stage('Push docker image'){
-            when {
-                branch 'master'
-            }
+           
             steps{
                 script {
                     docker.withRegistry('https://registry.hub.docker.com','docker_hub_login'){
